@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--Autor: Diego Rubio-->
+<html lang="en" dir="ltr">
+  <head>                <!--Estilo, framework, ejemplo bootstrap-->
+    <meta charset="utf-8">
+    <!--Importar archivo css-->
+    <link rel="stylesheet" href="style.css">
+    <!--Fuente Titulo Pagina-->
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <!--Import Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!--Icono pestaña-->
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/567/PNG/512/marker_icon-icons.com_54388.png">
+
+    <title> ¿Where?</title> <!--Titulo Pestaña-->
+
+  </head>
+
+  <body>              <!--Estructura de todo lo que va en la pagina-->
+    <div class="container">     <!--Todo dentro para bootstrap-->
+
+      <div class="row">         <!--Nueva fila bootstrap-->
+        <div class="col-md-12">         <!--Propiedades pantalla md espacio 12/12-->
+          <h1>Find An Area To Live</h1>       <!--img fluid para responsive img, se acomoda a pantalla-->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+        <!-- Google MAP-->
+        <div id="map" class="col-md-10">    <!--Espacio de 10 misma fila-->
+          <script>
+            function initMap(){
+              //map options
+              var options = {
+                zoom:12,
+                center: {lat:40.7292,lng:-73.9966}   //lat long New York (NYU Stern School of Business)
+              }
+              //New map
+              var map = new google.maps.Map(document.getElementById('map'),options);
+              //Agreger marcador
+              var marker = new google.maps.Marker({
+                position:{lat:40.7292,lng:-73.9966},     //lat long NYU Stern School of Business
+                map:map
+              });
+              //Graficar distritos
+              map.data.loadGeoJson('https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/nycd/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson');
+              //Estilo del mapa, color, grosor linea
+              map.data.setStyle({
+                fillColor: 'white',   //color poligono
+                strokeWeight: 1,       //grosor borde
+                strokeColor: 'grey'   //color borde
+              });
+              //cambia color mientras el cursor esté sobre el area
+              map.data.addListener('mouseover', function(event) {
+                map.data.overrideStyle(event.feature, {fillColor: 'red'});
+              });
+              //cambia color cuando el cursor sale del Area
+              map.data.addListener('mouseout', function(event) {
+                map.data.overrideStyle(event.feature, {fillColor: 'white'});
+              });
+            }
+          </script>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">    <!--Espacio de 11 misma fila-->
+        </div>
+        <div class="col-md-2">    <!--Espacio de 1 misma fila-->
+          <h6 id="autor">Diego Rubio</h6>
+        </div>
+      </div>
+    </div>
+    <!--JQuery-->
+    <script
+			  src="http://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+    <!--Importar archivo javascript-->
+    <script type="text/javascript" src="index.js"></script>
+    <!--Importar Google API con mi key-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBATuqCqp79TGDNeKEHOJGiAlt4SuBA9c&callback=initMap"
+    async defer></script>
+    <!--Importar JQuery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  </body>
+  <!--Scripts, Jquery, Javascript-->
+</html>

@@ -1,0 +1,26 @@
+h1{
+  color:  #5d6d7e !important;
+  text-align: center;
+  font-family: 'Do Hyeon', sans-serif !important;   /*Fuente de google fonts*/
+  margin-top: 20px !important;
+}
+
+body{       /*Propiedades para todo*/
+  background: url("https://www.pixeden.com/media/k2/galleries/165/003-subtle-light-pattern-background-texture-vol5.jpg"); /*Fondo de pantalla*/
+}
+
+#map{       /*Propiedades Google map*/
+  border: #5d6d7e 2px solid;
+  height: 400px;
+  width: 50%;
+  align-self: center;
+
+}
+
+#autor{
+  color:  #5d6d7e !important;
+  text-align: right !important;
+  font-family: 'Do Hyeon', sans-serif !important;   /*Fuente de google fonts*/
+  opacity: 0.4;
+  margin-top: 20px;
+}
